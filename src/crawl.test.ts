@@ -74,3 +74,17 @@ test("getURLsFromHtml relative and absolute", () => {
   ];
   expect(actual).toEqual(expected);
 });
+
+test("getURLsFromHtml invalid", () => {
+  const inputHtmlBody = `
+  <html>
+    <body>
+      <a href="invalid">invalid URL</a>
+    </body>
+  </html>
+  `;
+  const inputBaseUrl = "https://blog.dev.tov";
+  const actual = getURLsFromHTML(inputHtmlBody, inputBaseUrl);
+  const expected: string[] = [];
+  expect(actual).toEqual(expected);
+});

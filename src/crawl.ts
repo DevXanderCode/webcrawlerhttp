@@ -9,10 +9,24 @@ export function getURLsFromHTML(htmlBody: string, baseURL: string) {
     const link = linkElement.href;
     if (link.slice(0, 1) === "/") {
       // relative url path
-      urls.push(`${baseURL}${link}`);
+      try {
+        const urlObj = new URL(`${baseURL}${link}`);
+        urls.push(urlObj.href);
+      } catch (error: unknown) {
+        if (error instanceof Error) {
+          console.log(`error with the relative url: ${error.message}`);
+        }
+      }
     } else {
       // absolute url path
-      urls.push(link);
+      try {
+        const urlObj = new URL(link);
+        urls.push(urlObj.href);
+      } catch (error: unknown) {
+        if (error instanceof Error) {
+          console.log(`error with the absolute url: ${error.message}`);
+        }
+      }
     }
   }
 
