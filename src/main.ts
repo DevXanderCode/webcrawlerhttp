@@ -1,4 +1,4 @@
-import { crawlPage } from "./crawl";
+import { crawlPage } from "@/src/crawl";
 
 async function main() {
   const args = process.argv;
