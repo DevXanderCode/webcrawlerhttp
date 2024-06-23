@@ -9,15 +9,22 @@ test("normalizeURL strip protocol", () => {
 });
 
 test("normalizeURL strip trailing slash", () => {
-  const input = "https://blog.boot.dev/path/";
+  const input = "https://blog.dev.tov/path/";
   const actual = normalizeURL(input);
-  const expected = "blog.boot.dev/path";
+  const expected = "blog.dev.tov/path";
   expect(actual).toEqual(expected);
 });
 
 test("normalizeURL capitals", () => {
-  const input = "https:BLOG.bOot.DEV/path";
+  const input = "https:BLOG.dev.toV/path";
   const actual = normalizeURL(input);
-  const expected = "blog.boot.dev/path";
+  const expected = "blog.dev.tov/path";
+  expect(actual).toEqual(expected);
+});
+
+test("normalizeURL strip http", () => {
+  const input = "http:blog.dev.tov/path";
+  const actual = normalizeURL(input);
+  const expected = "blog.dev.tov/path";
   expect(actual).toEqual(expected);
 });
