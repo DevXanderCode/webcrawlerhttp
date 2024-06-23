@@ -1,3 +1,8 @@
+export function getURLsFromHTML(htmlBody: string, baseURL: string) {
+  const urls: string[] = [];
+  return urls;
+}
+
 export function normalizeURL(urlString: string) {
   const urlObj = new URL(urlString);
   const hostPath = `${urlObj.hostname}${urlObj.pathname}`;
