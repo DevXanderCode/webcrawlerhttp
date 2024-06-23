@@ -1,5 +1,16 @@
 import { JSDOM } from "jsdom";
 
+export async function crawlPage(currentURL: string) {
+  console.log(`actively crawling:  ${currentURL}`);
+
+  try {
+    const resp = await fetch(currentURL);
+    console.log("logging response => ", resp.text());
+  } catch (error) {
+    console.log("got some error: ", error);
+  }
+}
+
 export function getURLsFromHTML(htmlBody: string, baseURL: string) {
   const urls: string[] = [];
   const dom = new JSDOM(htmlBody);
@@ -16,6 +27,7 @@ export function getURLsFromHTML(htmlBody: string, baseURL: string) {
         if (error instanceof Error) {
           console.log(`error with the relative url: ${error.message}`);
         }
+        console.log(`error with the absolute url: ${error}`);
       }
     } else {
       // absolute url path
@@ -26,6 +38,7 @@ export function getURLsFromHTML(htmlBody: string, baseURL: string) {
         if (error instanceof Error) {
           console.log(`error with the absolute url: ${error.message}`);
         }
+        console.log(`error with the absolute url: ${error}`);
       }
     }
   }
