@@ -1,4 +1,5 @@
 import { crawlPage } from "@/src/crawl";
+import { printReport } from "@/src/report";
 
 async function main() {
   const args = process.argv;
@@ -17,9 +18,7 @@ async function main() {
   console.log(`starting crawl of ${baseURL}`);
   const pages = await crawlPage(baseURL, baseURL, {});
 
-  for (let page of Object.entries(pages)) {
-    console.log("logging pages:", page);
-  }
+  printReport(pages);
 }
 
 main();
