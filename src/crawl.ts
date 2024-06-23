@@ -4,6 +4,5 @@ export function normalizeURL(urlString: string) {
   if (hostPath.length > 1 && hostPath.slice(-1) === "/") {
     return hostPath.slice(0, -1);
   }
-
   return hostPath;
 }

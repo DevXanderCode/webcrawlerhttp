@@ -14,3 +14,10 @@ test("normalizeURL strip trailing slash", () => {
   const expected = "blog.boot.dev/path";
   expect(actual).toEqual(expected);
 });
+
+test("normalizeURL capitals", () => {
+  const input = "https:BLOG.bOot.DEV/path";
+  const actual = normalizeURL(input);
+  const expected = "blog.boot.dev/path";
+  expect(actual).toEqual(expected);
+});
