@@ -1,4 +1,4 @@
-import { normalizeURL } from "./crawl";
+import { normalizeURL, getURLsFromHTML } from "./crawl";
 import { test, expect } from "@jest/globals";
 
 test("normalizeURL strip protocol", () => {
@@ -26,5 +26,19 @@ test("normalizeURL strip http", () => {
   const input = "http:blog.dev.tov/path";
   const actual = normalizeURL(input);
   const expected = "blog.dev.tov/path";
+  expect(actual).toEqual(expected);
+});
+
+test("getURLsFromHTML absolute urls", () => {
+  const inputHtmlBody = `
+  <html>
+    <body>
+      <a href="https://blog.dev.tov/">Dev.tov Blog</a>
+    </body>
+  </html>
+  `;
+  const inputBaseUrl = "https://blog.dev.tov";
+  const actual = getURLsFromHTML(inputHtmlBody, inputBaseUrl);
+  const expected = ["https://blog.dev.tov/"];
   expect(actual).toEqual(expected);
 });
