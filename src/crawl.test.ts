@@ -29,16 +29,30 @@ test("normalizeURL strip http", () => {
   expect(actual).toEqual(expected);
 });
 
-test("getURLsFromHTML absolute urls", () => {
+test("getURLsFromHTML absolute", () => {
   const inputHtmlBody = `
   <html>
     <body>
-      <a href="https://blog.dev.tov/">Dev.tov Blog</a>
+      <a href="https://blog.dev.tov/path/">Dev.tov Blog</a>
     </body>
   </html>
   `;
   const inputBaseUrl = "https://blog.dev.tov";
   const actual = getURLsFromHTML(inputHtmlBody, inputBaseUrl);
-  const expected = ["https://blog.dev.tov/"];
+  const expected = ["https://blog.dev.tov/path/"];
+  expect(actual).toEqual(expected);
+});
+
+test("getURLsFromHtml relative", () => {
+  const inputHtmlBody = `
+  <html>
+    <body>
+      <a href="/path/">Dev.tov Blog</a>
+    </body>
+  </html>
+  `;
+  const inputBaseUrl = "https://blog.dev.tov";
+  const actual = getURLsFromHTML(inputHtmlBody, inputBaseUrl);
+  const expected = ["https://blog.dev.tov/path/"];
   expect(actual).toEqual(expected);
 });
