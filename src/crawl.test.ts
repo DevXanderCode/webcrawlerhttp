@@ -56,3 +56,21 @@ test("getURLsFromHtml relative", () => {
   const expected = ["https://blog.dev.tov/path/"];
   expect(actual).toEqual(expected);
 });
+
+test("getURLsFromHtml relative and absolute", () => {
+  const inputHtmlBody = `
+  <html>
+    <body>
+      <a href="/path1/">Dev.tov Blog - relative</a>
+        <a href="https://blog.dev.tov/path2/">Dev.tov Blog</a>
+    </body>
+  </html>
+  `;
+  const inputBaseUrl = "https://blog.dev.tov";
+  const actual = getURLsFromHTML(inputHtmlBody, inputBaseUrl);
+  const expected = [
+    "https://blog.dev.tov/path1/",
+    "https://blog.dev.tov/path2/",
+  ];
+  expect(actual).toEqual(expected);
+});
