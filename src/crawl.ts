@@ -5,9 +5,24 @@ export async function crawlPage(currentURL: string) {
 
   try {
     const resp = await fetch(currentURL);
-    console.log("logging response => ", resp.text());
-  } catch (error) {
-    console.log("got some error: ", error);
+    if (resp.status > 399) {
+      console.log(
+        `error in fetch with status code: ${resp.status} on page ${currentURL}`
+      );
+      return;
+    }
+
+    const contentType = resp.headers.get("content-type");
+
+    if (!contentType?.includes("text/html")) {
+      console.log(
+        `non html response, content type: ${contentType}, on page: ${currentURL}`
+      );
+      return;
+    }
+    console.log("logging response => ", await resp.text());
+  } catch (error: any) {
+    console.log("error in fetch: ", error.message, "on page:", currentURL);
   }
 }
 
