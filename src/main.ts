@@ -1,4 +1,6 @@
-function main() {
+import { crawlPage } from "./crawl";
+
+async function main() {
   const args = process.argv;
   if (args.length < 3) {
     console.log("no website provided.");
@@ -13,6 +15,7 @@ function main() {
   const baseURL = args[2];
 
   console.log(`starting crawl of ${baseURL}`);
+  await crawlPage(baseURL);
 }
 
 main();
