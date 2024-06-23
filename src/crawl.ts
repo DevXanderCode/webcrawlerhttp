@@ -1,3 +1,4 @@
 export function normalizeURL(urlString: string) {
-  return urlString;
+  const urlObj = new URL(urlString);
+  return `${urlObj.hostname}${urlObj.pathname}`;
 }

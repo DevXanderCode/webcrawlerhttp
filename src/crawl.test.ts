@@ -1,9 +1,9 @@
 import { normalizeURL } from "./crawl";
 import { test, expect } from "@jest/globals";
 
-test("normalizeURL", () => {
-  let input = "";
+test("normalizeURL strip protocol", () => {
+  let input = "https://blog.boot.dev/path";
   const actual = normalizeURL(input);
-  const expected = "something else";
+  const expected = "blog.boot.dev/path";
   expect(actual).toEqual(expected);
 });
