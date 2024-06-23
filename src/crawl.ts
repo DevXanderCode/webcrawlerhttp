@@ -1,6 +1,25 @@
 import { JSDOM } from "jsdom";
 
-export async function crawlPage(currentURL: string) {
+export async function crawlPage(
+  baseUrl: string,
+  currentURL: string,
+  pages: Record<string, number>
+) {
+  const baseURLObj = new URL(baseUrl);
+  const currentURLObj = new URL(currentURL);
+
+  if (baseURLObj.hostname !== currentURLObj.hostname) {
+    return pages;
+  }
+
+  const normalizeCurrentURL = normalizeURL(currentURL);
+
+  if (pages[normalizeCurrentURL] > 0) {
+    pages[normalizeCurrentURL]++;
+    return pages;
+  }
+
+  pages[normalizeCurrentURL] = 1;
   console.log(`actively crawling:  ${currentURL}`);
 
   try {
@@ -9,7 +28,7 @@ export async function crawlPage(currentURL: string) {
       console.log(
         `error in fetch with status code: ${resp.status} on page ${currentURL}`
       );
-      return;
+      return pages;
     }
 
     const contentType = resp.headers.get("content-type");
@@ -18,11 +37,18 @@ export async function crawlPage(currentURL: string) {
       console.log(
         `non html response, content type: ${contentType}, on page: ${currentURL}`
       );
-      return;
+      return pages;
     }
-    console.log("logging response => ", await resp.text());
+    const htmlBody = await resp.text();
+    const nextURLs = getURLsFromHTML(htmlBody, baseUrl);
+
+    for (let nextURL of nextURLs) {
+      pages = await crawlPage(baseUrl, nextURL, pages);
+    }
   } catch (error: any) {
     console.log("error in fetch: ", error.message, "on page:", currentURL);
+  } finally {
+    return pages;
   }
 }
 
