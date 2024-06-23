@@ -1,4 +1,9 @@
 export function normalizeURL(urlString: string) {
   const urlObj = new URL(urlString);
-  return `${urlObj.hostname}${urlObj.pathname}`;
+  const hostPath = `${urlObj.hostname}${urlObj.pathname}`;
+  if (hostPath.length > 1 && hostPath.slice(-1) === "/") {
+    return hostPath.slice(0, -1);
+  }
+
+  return hostPath;
 }
