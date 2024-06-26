@@ -1,5 +1,7 @@
+import { join } from "path";
 import { crawlPage } from "@/src/crawl";
 import { printReport } from "@/src/report";
+import { ensureFileExists, writeReportToFile } from "@/src/fileHelper";
 
 async function main() {
   const args = process.argv;
@@ -18,7 +20,7 @@ async function main() {
   console.log(`starting crawl of ${baseURL}`);
   const pages = await crawlPage(baseURL, baseURL, {});
 
-  printReport(pages);
+  printReport(pages, baseURL);
 }
 
 main();

@@ -13,3 +13,10 @@ export async function ensureFileExists(filePath: string) {
     }
   }
 }
+
+export async function writeReportToFile(content: string) {
+  const filePath = join(__dirname, "report.txt");
+  await ensureFileExists(filePath);
+
+  await fs.writeFile(filePath, content);
+}
