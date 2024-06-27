@@ -17,5 +17,12 @@ A CLI application built for crawling the web and generating a document that maps
    git clone https://github.com/DevXanderCode/webcrawlerhttp.git
    cd webcrawlerhttp
    install dependencies
+
+2. **Install Dependencies:**
+   ```sh
    npm install
-  ```
+
+3. **Usage:**
+   ```sh
+   npm start [URL]
+*replace [URL] with the website URL you want to crawl*
