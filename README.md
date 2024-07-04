@@ -30,3 +30,13 @@ A CLI application built for crawling the web and generating a document that maps
    ```sh
    npm start [URL]
 *replace [URL] with the website URL you want to crawl*
+
+## Contributing
+
+We welcome contributions! Follow these steps to contribute:
+
+1. Fork the repository.
+2. Create a new branch (`git checkout -b feature-branch`).
+3. Make and commit your changes (`git commit -m 'Add new feature'`).
+4. Push to the branch (`git push origin feature-branch`).
+5. Open a pull request.
