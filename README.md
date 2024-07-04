@@ -1,4 +1,8 @@
 # webcrawlerhttp
+[![License](https://img.shields.io/github/license/DevXanderCode/webcrawlerhttp)](LICENSE)
+[![Stars](https://img.shields.io/github/stars/DevXanderCode/webcrawlerhttp)](https://github.com/DevXanderCode/webcrawlerhttp/stargazers)
+[![Forks](https://img.shields.io/github/forks/DevXanderCode/webcrawlerhttp)](https://github.com/DevXanderCode/webcrawlerhttp/network/members)
+[![Issues](https://img.shields.io/github/issues/DevXanderCode/webcrawlerhttp)](https://github.com/DevXanderCode/webcrawlerhttp/issues)
 
 A CLI application built for crawling the web and generating a document that maps out which pages are linked to which.
 
